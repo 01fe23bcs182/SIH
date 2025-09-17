@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Teacher Dashboard - Disaster Prep</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="app.renderTeacherDashboard()">
   <nav>
     <a href="index.html">Home</a>
     <a href="login.html">Login</a>
@@ -16,9 +16,34 @@
 
   <h1>Teacher Dashboard</h1>
   <div class="content">
-    <p>Here teachers can start drills, send alerts, and track reports.</p>
-    <button onclick="alert('Fire Drill Started!')">Start Fire Drill</button><br><br>
-    <button onclick="alert('Earthquake Drill Started!')">Start Earthquake Drill</button>
+    <p>Welcome, <span id="teacherName">Teacher</span></p>
+
+    <h3>Start a Drill</h3>
+    <input id="drillTitle" placeholder="Drill title (e.g. Fire Drill)" value="Fire Drill">
+    <select id="drillKind">
+      <option value="fire">Fire</option>
+      <option value="earthquake">Earthquake</option>
+      <option value="flood">Flood</option>
+    </select>
+    <br><br>
+    <textarea id="drillMsg" placeholder="Message for students">Drill in progress. Follow safety steps.</textarea>
+    <br><br>
+    <button onclick="startDrill()">Trigger Drill (simulate)</button>
+
+    <h3 style="margin-top:20px">Past Drills</h3>
+    <ul id="drillList"></ul>
   </div>
+
+  <script src="app.js"></script>
+  <script>
+    function startDrill() {
+      const title = document.getElementById('drillTitle').value || 'Drill';
+      const kind = document.getElementById('drillKind').value;
+      const msg = document.getElementById('drillMsg').value || 'Drill started';
+      const d = app.triggerDrill({ title, kind, message: msg });
+      alert('Drill triggered: ' + d.title);
+      app.renderTeacherDashboard();
+    }
+  </script>
 </body>
 </html>
