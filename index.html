@@ -1,22 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Disaster Preparedness Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SIH - Disaster Preparedness</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="student.html">Student Dashboard</a>
-    <a href="teacher.html">Teacher Dashboard</a>
-  </nav>
+<body data-page="index">
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="index.html"><span class="logo">SIH</span> Disaster Ready</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="teacher.html">Teacher</a>
+        <a href="student.html">Student</a>
+      </nav>
+    </header>
 
-  <h1>Disaster Preparedness Website</h1>
-  <div class="content">
-    <p>Welcome! This site will help students and teachers prepare for disasters.</p>
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <h1>Make every school a safe school — practice, alert, save.</h1>
+          <p>Interactive drills, quick alerts, and simple dashboards. This demo shows web-based drills and instant student updates (works across tabs).</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="login.html">Get Started</a>
+            <a class="btn btn-outline" href="#features">Features</a>
+          </div>
+        </div>
+        <div class="hero-right" style="width:360px">
+          <div class="card" style="background:linear-gradient(180deg,#fff,#f9fbff);text-align:center">
+            <h3 style="margin:6px 0 4px 0">Demo Flow</h3>
+            <p class="small">Login as Teacher & Student in separate tabs → Teacher starts drill → Students mark safe → Teacher views report.</p>
+            <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+              <a class="btn btn-outline" href="teacher.html">Open Teacher</a>
+              <a class="btn btn-primary" href="student.html">Open Student</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" style="margin-top:18px">
+        <div class="grid">
+          <div class="card">
+            <h3>Alerts & Drills</h3>
+            <p>Trigger class drills and notify students instantly via browser event demo. Replace with SMS/push later.</p>
+          </div>
+          <div class="card">
+            <h3>Student Training</h3>
+            <p>Lessons, quizzes and printable posters. Multi-tech support for low/mid/high tech schools (PPT outlines available).</p>
+          </div>
+          <div class="card">
+            <h3>Reports</h3>
+            <p>Attendance during drills, safety reports, and drill history. Exportable later to CSV or server DB.</p>
+          </div>
+          <div class="card">
+            <h3>Multi-lingual</h3>
+            <p>Messages and templates can go out in local languages (Punjabi/Hindi/English); voice fallback for non-phone households.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        Built for SIH — Demo prototype. Open teacher and student pages in different tabs to simulate live drill behavior.
+      </div>
+    </main>
   </div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
