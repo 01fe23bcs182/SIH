@@ -1,48 +1,42 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Student Dashboard — SIH Demo</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body data-page="student">
-  <div class="container">
-    <header class="nav">
-      <a class="brand" href="index.html"><span class="logo">SIH</span> Student</a>
-      <div style="display:flex;gap:12px;align-items:center">
-        <div id="navUser" class="small"></div>
-        <button id="logoutBtn" class="btn btn-outline">Logout</button>
-      </div>
-    </header>
-
-    <main>
-      <div class="topbar">
-        <div>
-          <h2 id="greet">Welcome</h2>
-          <div class="small">Student Dashboard — learn, practice and get alerts</div>
-        </div>
-        <div class="stats">
-          <div class="stat">Drills participated: <div class="kv">—</div></div>
-          <div class="stat">Quizzes taken: <div class="kv">—</div></div>
-        </div>
-      </div>
-
-      <section>
-        <h3>Modules</h3>
-        <div id="modules" class="modules"></div>
-      </section>
-
-      <section style="margin-top:18px">
-        <div class="card">
-          <h3>Past drills</h3>
-          <div class="small">This demo stores drill responses locally. In production these will be persisted to a server and visible to parents/administration.</div>
-        </div>
-      </section>
-    </main>
-
+<section>
+  <h3>Lessons & Quizzes</h3>
+  <div class="modules">
+    <div class="module">
+      <h4>Earthquake Safety</h4>
+      <p class="small">Learn what to do during earthquakes.</p>
+      <a href="lessons/earthquake.html" target="_blank" class="btn btn-outline">Read Lesson</a>
+      <button class="btn btn-primary" onclick="startQuiz('earthquake')">Take Quiz</button>
+    </div>
+    <div class="module">
+      <h4>Fire Safety</h4>
+      <p class="small">Important fire evacuation rules.</p>
+      <a href="lessons/fire.html" target="_blank" class="btn btn-outline">Read Lesson</a>
+      <button class="btn btn-primary" onclick="startQuiz('fire')">Take Quiz</button>
+    </div>
+    <div class="module">
+      <h4>Flood Safety</h4>
+      <p class="small">How to stay safe during floods.</p>
+      <a href="lessons/flood.html" target="_blank" class="btn btn-outline">Read Lesson</a>
+      <button class="btn btn-primary" onclick="startQuiz('flood')">Take Quiz</button>
+    </div>
+    <div class="module">
+      <h4>First Aid</h4>
+      <p class="small">Basics of handling injuries.</p>
+      <a href="lessons/firstaid.html" target="_blank" class="btn btn-outline">Read Lesson</a>
+      <button class="btn btn-primary" onclick="startQuiz('firstaid')">Take Quiz</button>
+    </div>
   </div>
+</section>
 
-  <script src="app.js" defer></script>
-</body>
-</html>
+<!-- Quiz Modal -->
+<div class="modal-overlay" id="quizModal">
+  <div class="modal">
+    <h3 id="quizTitle"></h3>
+    <div id="quizQuestion"></div>
+    <div id="quizOptions"></div>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="closeQuiz()">Close</button>
+      <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+</div>
