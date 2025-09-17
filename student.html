@@ -1,35 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Dashboard - Disaster Prep</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Dashboard — SIH Demo</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body onload="app.renderStudentDashboard(); app.checkCurrentDrillOnLoad();">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="student.html">Student Dashboard</a>
-    <a href="teacher.html">Teacher Dashboard</a>
-  </nav>
+<body data-page="student">
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="index.html"><span class="logo">SIH</span> Student</a>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div id="navUser" class="small"></div>
+        <button id="logoutBtn" class="btn btn-outline">Logout</button>
+      </div>
+    </header>
 
-  <h1>Student Dashboard</h1>
-  <div class="content">
-    <p>Welcome, <span id="studentName">Student</span></p>
+    <main>
+      <div class="topbar">
+        <div>
+          <h2 id="greet">Welcome</h2>
+          <div class="small">Student Dashboard — learn, practice and get alerts</div>
+        </div>
+        <div class="stats">
+          <div class="stat">Drills participated: <div class="kv">—</div></div>
+          <div class="stat">Quizzes taken: <div class="kv">—</div></div>
+        </div>
+      </div>
 
-    <div id="studentAlert" style="display:none;"></div>
+      <section>
+        <h3>Modules</h3>
+        <div id="modules" class="modules"></div>
+      </section>
 
-    <h3>Lessons</h3>
-    <ul style="text-align:left; display:inline-block;">
-      <li><b>Earthquake Safety:</b> Drop, Cover, Hold</li>
-      <li><b>Fire Safety:</b> Evacuate calmly to assembly point</li>
-      <li><b>Flood Safety:</b> Move to higher ground</li>
-    </ul>
+      <section style="margin-top:18px">
+        <div class="card">
+          <h3>Past drills</h3>
+          <div class="small">This demo stores drill responses locally. In production these will be persisted to a server and visible to parents/administration.</div>
+        </div>
+      </section>
+    </main>
 
-    <p style="margin-top:20px;"><a href="login.html">Switch login</a></p>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
