@@ -1,49 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Teacher Dashboard - Disaster Prep</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teacher Dashboard — SIH Demo</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body onload="app.renderTeacherDashboard()">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="student.html">Student Dashboard</a>
-    <a href="teacher.html">Teacher Dashboard</a>
-  </nav>
+<body data-page="teacher">
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="index.html"><span class="logo">SIH</span> Teacher</a>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div id="navUser" class="small"></div>
+        <button id="logoutBtn" class="btn btn-outline">Logout</button>
+      </div>
+    </header>
 
-  <h1>Teacher Dashboard</h1>
-  <div class="content">
-    <p>Welcome, <span id="teacherName">Teacher</span></p>
+    <main>
+      <div class="topbar">
+        <div>
+          <h2 id="greetTeacher">Teacher</h2>
+          <div class="small">Trigger drills and view live student responses</div>
+        </div>
+        <div class="stats">
+          <div class="stat">Responded: <div class="kv" id="statCount">0</div></div>
+          <div class="stat">Missing: <div class="kv">—</div></div>
+        </div>
+      </div>
 
-    <h3>Start a Drill</h3>
-    <input id="drillTitle" placeholder="Drill title (e.g. Fire Drill)" value="Fire Drill">
-    <select id="drillKind">
-      <option value="fire">Fire</option>
-      <option value="earthquake">Earthquake</option>
-      <option value="flood">Flood</option>
-    </select>
-    <br><br>
-    <textarea id="drillMsg" placeholder="Message for students">Drill in progress. Follow safety steps.</textarea>
-    <br><br>
-    <button onclick="startDrill()">Trigger Drill (simulate)</button>
+      <div style="display:grid;grid-template-columns:360px 1fr;gap:12px">
+        <div>
+          <div class="card">
+            <h3>Start Drill</h3>
+            <form id="startDrillForm">
+              <label class="small">Drill Type</label>
+              <input name="type" placeholder="Fire Drill" style="width:100%;padding:8px;border-radius:8px;margin-top:6px;margin-bottom:10px" />
 
-    <h3 style="margin-top:20px">Past Drills</h3>
-    <ul id="drillList"></ul>
+              <label class="small">Class</label>
+              <input name="cls" placeholder="ClassA" style="width:100%;padding:8px;border-radius:8px;margin-top:6px;margin-bottom:10px" />
+
+              <label class="small">Message (optional)</label>
+              <input name="message" placeholder="Evacuate to assembly point A" style="width:100%;padding:8px;border-radius:8px;margin-top:6px;margin-bottom:12px" />
+
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <button type="submit" class="btn btn-primary">Start Drill</button>
+                <button id="btnEnd" type="button" class="btn btn-outline">End Drill</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h3>Saved Reports</h3>
+            <div class="small">Ended drill reports are stored locally for demo (drillReports key).</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3>Live Report</h3>
+            <div id="reportList" style="min-height:110px">No drill running.</div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 
-  <script src="app.js"></script>
-  <script>
-    function startDrill() {
-      const title = document.getElementById('drillTitle').value || 'Drill';
-      const kind = document.getElementById('drillKind').value;
-      const msg = document.getElementById('drillMsg').value || 'Drill started';
-      const d = app.triggerDrill({ title, kind, message: msg });
-      alert('Drill triggered: ' + d.title);
-      app.renderTeacherDashboard();
-    }
-  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
