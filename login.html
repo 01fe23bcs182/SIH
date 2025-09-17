@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login - Disaster Prep</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,15 +16,35 @@
 
   <h1>Login</h1>
   <div class="content">
-    <form>
-      <label for="username">Username:</label><br>
-      <input type="text" id="username" name="username"><br><br>
-
-      <label for="password">Password:</label><br>
-      <input type="password" id="password" name="password"><br><br>
-
+    <form id="loginForm" onsubmit="return doLogin(event)">
+      <label>Username:</label><br>
+      <input id="username" required><br><br>
+      <label>Password:</label><br>
+      <input id="password" type="password" required><br><br>
       <button type="submit">Login</button>
     </form>
+    <p style="margin-top:10px;">Demo credentials:<br>
+      <strong>Teacher:</strong> teacher1 / pass<br>
+      <strong>Student:</strong> student1 / pass</p>
   </div>
+
+  <script src="app.js"></script>
+  <script>
+    function doLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+      const user = app.login(u, p);
+      if (!user) {
+        alert('Invalid credentials. Use teacher1/pass or student1/pass');
+        return false;
+      }
+      // redirect based on role
+      if (user.role === 'teacher') window.location = 'teacher.html';
+      else if (user.role === 'student') window.location = 'student.html';
+      else window.location = 'index.html';
+      return false;
+    }
+  </script>
 </body>
 </html>
