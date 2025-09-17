@@ -4,14 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teacher Dashboard - Disaster Prep</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family: Arial; text-align: center; padding: 50px;">
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="student.html">Student Dashboard</a>
+    <a href="teacher.html">Teacher Dashboard</a>
+  </nav>
+
   <h1>Teacher Dashboard</h1>
-  <p>Here teachers can start drills, send alerts, and track reports.</p>
-
-  <button onclick="alert('Fire Drill Started!')">Start Fire Drill</button><br><br>
-  <button onclick="alert('Earthquake Drill Started!')">Start Earthquake Drill</button>
-
-  <p><a href="index.html">Back to Home</a></p>
+  <div class="content">
+    <p>Here teachers can start drills, send alerts, and track reports.</p>
+    <button onclick="alert('Fire Drill Started!')">Start Fire Drill</button><br><br>
+    <button onclick="alert('Earthquake Drill Started!')">Start Earthquake Drill</button>
+  </div>
 </body>
 </html>
