@@ -280,3 +280,38 @@ function refreshLeaderboard(){
   html += "</tbody></table>";
   board.innerHTML = html;
 }
+
+/******************************
+ * ADMIN DASHBOARD
+ ******************************/
+function initAdmin(){
+  const user = getUser();
+  if(!user || user.role !== "admin"){ location.href = "login.html"; return; }
+
+  const greet = by("greetAdmin");
+  if(greet) greet.innerHTML = `<strong>${user.name}</strong> — Admin`;
+
+  const reports = JSON.parse(localStorage.getItem("drillReports") || "[]");
+  const adminReports = by("adminReports");
+
+  if(reports.length === 0){
+    adminReports.innerHTML = "No reports yet.";
+  } else {
+    let html = "<table class='table'><thead><tr><th>Type</th><th>Class</th><th>Date</th><th>Responses</th></tr></thead><tbody>";
+    let totalResponses = 0;
+    reports.forEach(r=>{
+      html += `<tr>
+        <td>${r.drill.type}</td>
+        <td>${r.drill.cls}</td>
+        <td>${new Date(r.drill.startedAt).toLocaleString()}</td>
+        <td>${r.responses.length}</td>
+      </tr>`;
+      totalResponses += r.responses.length;
+    });
+    html += "</tbody></table>";
+    adminReports.innerHTML = html;
+
+    by("statTotalDrills").innerText = reports.length;
+    by("statTotalResponses").innerText = totalResponses;
+  }
+}
