@@ -1,76 +1,30 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login — SIH Demo</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - SIH</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="login">
-  <div class="container">
-    <header class="nav">
-      <a class="brand" href="index.html"><span class="logo">SIH</span> Disaster Ready</a>
-      <div id="navUser" style="color:var(--muted)"></div>
-    </header>
-
-    <main style="margin-top:14px">
-      <div style="display:grid;grid-template-columns:1fr 360px;gap:18px">
-        <div>
-          <div class="card">
-            <h2>Login / Demo Signup</h2>
-            <p class="small">Choose role. This is a demo: no passwords — localStorage stores your demo user.</p>
-            <ol class="small">
-              <li>Pick role: Student or Teacher</li>
-              <li>Fill name and class/roll (student)</li>
-              <li>Press Login — you'll be redirected to a dashboard</li>
-            </ol>
-          </div>
-
-          <div class="card" style="margin-top:12px">
-            <h3>Why this demo?</h3>
-            <p class="small">This quick flow demonstrates alerts and reporting without backend. Later we will replace auth and localStorage with Node + PostgreSQL + Twilio/SendGrid.</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="card">
-            <form id="loginForm">
-              <label class="small">Role</label>
-              <select id="role" name="role" style="width:100%;padding:10px;border-radius:8px;margin-top:6px;margin-bottom:12px">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-              </select>
-
-              <label class="small">Name</label>
-              <input id="name" name="name" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;margin-top:6px;margin-bottom:12px" />
-
-              <label class="small">Class (example: ClassA)</label>
-              <input id="cls" name="cls" placeholder="ClassA" style="width:100%;padding:10px;border-radius:8px;margin-top:6px;margin-bottom:12px" />
-
-              <label class="small">Roll (students)</label>
-              <input id="roll" name="roll" placeholder="e.g. 12" style="width:100%;padding:10px;border-radius:8px;margin-top:6px;margin-bottom:12px" />
-
-              <div style="display:flex;gap:8px;justify-content:flex-end">
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a href="index.html" class="btn btn-outline" style="text-decoration:none;display:inline-flex;align-items:center">Cancel</a>
-              </div>
-            </form>
-          </div>
-
-          <div class="card" style="margin-top:12px">
-            <div class="small">Quick demo roles</div>
-            <div id="sampleRoles" style="display:flex;gap:8px;margin-top:8px">
-              <button data-role="teacher" class="btn btn-outline">Teacher</button>
-              <button data-role="student" class="btn btn-outline">Student</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </main>
+  <div class="container center">
+    <h2>Login</h2>
+    <form id="loginForm" class="card" style="max-width:400px">
+      <label>Role</label>
+      <select name="role" required>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+      <label>Name</label>
+      <input type="text" name="name" required>
+      <label>Class</label>
+      <input type="text" name="cls" placeholder="ClassA">
+      <label>Roll No (Students only)</label>
+      <input type="text" name="roll">
+      <button class="btn btn-primary" type="submit">Login</button>
+    </form>
   </div>
-
-  <script src="app.js" defer></script>
+  <script src="app.js"></script>
+  <script>initLogin();</script>
 </body>
 </html>
