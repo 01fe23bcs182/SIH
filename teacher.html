@@ -8,6 +8,7 @@
 </head>
 <body data-page="teacher">
   <div class="container">
+    <!-- Navbar -->
     <header class="nav">
       <a class="brand" href="index.html"><span class="logo">SIH</span> Teacher</a>
       <div style="display:flex;gap:12px;align-items:center">
@@ -16,31 +17,45 @@
       </div>
     </header>
 
+    <!-- Teacher Dashboard -->
     <main>
       <div class="topbar">
         <div>
           <h2 id="greetTeacher">Teacher</h2>
-          <div class="small">Trigger drills and view live student responses</div>
+          <div class="small">Trigger drills, send alerts & view reports</div>
         </div>
         <div class="stats">
           <div class="stat">Responded: <div class="kv" id="statCount">0</div></div>
-          <div class="stat">Missing: <div class="kv">—</div></div>
         </div>
       </div>
 
       <div style="display:grid;grid-template-columns:360px 1fr;gap:12px">
+        <!-- Left Column -->
         <div>
+          <!-- Start Drill -->
           <div class="card">
-            <h3>Start Drill</h3>
+            <h3>Start Drill / Send Alert</h3>
             <form id="startDrillForm">
               <label class="small">Drill Type</label>
-              <input name="type" placeholder="Fire Drill" style="width:100%;padding:8px;border-radius:8px;margin-top:6px;margin-bottom:10px" />
+              <select name="type" style="width:100%;padding:8px;border-radius:8px;margin-bottom:10px">
+                <option value="Fire Drill">🔥 Fire Drill</option>
+                <option value="Earthquake Drill">🌍 Earthquake Drill</option>
+                <option value="Flood Drill">🌊 Flood Drill</option>
+                <option value="Closure Alert">📢 School Closure</option>
+              </select>
 
               <label class="small">Class</label>
-              <input name="cls" placeholder="ClassA" style="width:100%;padding:8px;border-radius:8px;margin-top:6px;margin-bottom:10px" />
+              <input name="cls" placeholder="ClassA" style="width:100%;padding:8px;border-radius:8px;margin-bottom:10px" />
 
               <label class="small">Message (optional)</label>
-              <input name="message" placeholder="Evacuate to assembly point A" style="width:100%;padding:8px;border-radius:8px;margin-top:6px;margin-bottom:12px" />
+              <input name="message" placeholder="Evacuate to Assembly Point A" style="width:100%;padding:8px;border-radius:8px;margin-bottom:12px" />
+
+              <label class="small">Language</label>
+              <select name="lang" style="width:100%;padding:8px;border-radius:8px;margin-bottom:12px">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+              </select>
 
               <div style="display:flex;gap:8px;justify-content:flex-end">
                 <button type="submit" class="btn btn-primary">Start Drill</button>
@@ -49,22 +64,25 @@
             </form>
           </div>
 
+          <!-- Saved Reports -->
           <div class="card" style="margin-top:12px">
             <h3>Saved Reports</h3>
-            <div class="small">Ended drill reports are stored locally for demo (drillReports key).</div>
+            <div id="savedReports" class="small">No reports yet.</div>
           </div>
         </div>
 
+        <!-- Right Column -->
         <div>
           <div class="card">
             <h3>Live Report</h3>
-            <div id="reportList" style="min-height:110px">No drill running.</div>
+            <div id="reportList" style="min-height:120px">No drill running.</div>
           </div>
         </div>
       </div>
     </main>
   </div>
 
+  <script src="quizzes.js"></script>
   <script src="app.js" defer></script>
 </body>
 </html>
