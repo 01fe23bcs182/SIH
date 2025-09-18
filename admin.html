@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard — SIH</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="admin">
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="index.html"><span class="logo">SIH</span> Admin</a>
+      <div id="navUser"></div>
+    </header>
+
+    <main>
+      <h2 id="greetAdmin"></h2>
+
+      <!-- Stats -->
+      <section>
+        <h3>Overall Statistics 📊</h3>
+        <div class="card">
+          <p>Total Drills: <span id="statTotalDrills">0</span></p>
+          <p>Total Responses: <span id="statTotalResponses">0</span></p>
+        </div>
+      </section>
+
+      <!-- Reports -->
+      <section>
+        <h3>All Drill Reports</h3>
+        <div id="adminReports" class="card small">No reports yet.</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>initAdmin();</script>
+</body>
+</html>
