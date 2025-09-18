@@ -3,108 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Teacher Dashboard — SIH Demo</title>
+  <title>Teacher Dashboard — SIH</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-page="teacher">
   <div class="container">
-    <!-- Navbar -->
     <header class="nav">
       <a class="brand" href="index.html"><span class="logo">SIH</span> Teacher</a>
-      <div style="display:flex;gap:12px;align-items:center">
-        <div id="navUser" class="small"></div>
-        <button id="logoutBtn" class="btn btn-outline">Logout</button>
-      </div>
+      <div id="navUser"></div>
     </header>
 
-    <!-- Teacher Dashboard -->
     <main>
-      <div class="topbar">
-        <div>
-          <h2 id="greetTeacher">Teacher</h2>
-          <div class="small">Trigger drills, send alerts & view reports</div>
+      <h2 id="greetTeacher"></h2>
+
+      <div class="grid">
+        <!-- Drill Section -->
+        <div class="card">
+          <h3>Start Drill / Send Alert</h3>
+          <form id="startDrillForm">
+            <label>Drill Type</label>
+            <select name="type">
+              <option value="Fire Drill">🔥 Fire Drill</option>
+              <option value="Earthquake Drill">🌍 Earthquake Drill</option>
+              <option value="Flood Drill">🌊 Flood Drill</option>
+              <option value="Closure Alert">📢 Closure Alert</option>
+            </select>
+            <label>Class</label>
+            <input name="cls" placeholder="ClassA">
+            <label>Message</label>
+            <input name="message" placeholder="Custom message">
+            <label>Language</label>
+            <select name="lang">
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="pa">ਪੰਜਾਬੀ</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Start Drill</button>
+            <button id="btnEnd" type="button" class="btn btn-outline">End Drill</button>
+          </form>
         </div>
-        <div class="stats">
-          <div class="stat">Responded: <div class="kv" id="statCount">0</div></div>
+
+        <!-- Live Report -->
+        <div class="card">
+          <h3>Live Report</h3>
+          <div id="reportList">No drill running.</div>
+          <div>Responded: <span id="statCount">0</span></div>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:360px 1fr;gap:12px">
-        <!-- Left Column -->
+      <!-- Saved Reports -->
+      <div class="card">
+        <h3>Saved Reports</h3>
+        <div id="savedReports" class="small">No reports yet.</div>
+      </div>
+
+      <!-- Resources -->
+      <div class="card">
+        <h3>Resources</h3>
+        <a class="download-btn" href="resources/posters/Earthquake.jpg" download>⬇️ Earthquake Poster</a>
+        <a class="download-btn" href="resources/posters/fire.jpg" download>⬇️ Fire Poster</a>
+        <a class="download-btn" href="resources/posters/flood.jpg" download>⬇️ Flood Poster</a>
         <div>
-          <!-- Start Drill -->
-          <div class="card">
-            <h3>Start Drill / Send Alert</h3>
-            <form id="startDrillForm">
-              <label class="small">Drill Type</label>
-              <select name="type" style="width:100%;padding:8px;border-radius:8px;margin-bottom:10px">
-                <option value="Fire Drill">🔥 Fire Drill</option>
-                <option value="Earthquake Drill">🌍 Earthquake Drill</option>
-                <option value="Flood Drill">🌊 Flood Drill</option>
-                <option value="Closure Alert">📢 School Closure</option>
-              </select>
-
-              <label class="small">Class</label>
-              <input name="cls" placeholder="ClassA" style="width:100%;padding:8px;border-radius:8px;margin-bottom:10px" />
-
-              <label class="small">Message (optional)</label>
-              <input name="message" placeholder="Evacuate to Assembly Point A" style="width:100%;padding:8px;border-radius:8px;margin-bottom:12px" />
-
-              <label class="small">Language</label>
-              <select name="lang" style="width:100%;padding:8px;border-radius:8px;margin-bottom:12px">
-                <option value="en">English</option>
-                <option value="hi">हिन्दी (Hindi)</option>
-                <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-              </select>
-
-              <div style="display:flex;gap:8px;justify-content:flex-end">
-                <button type="submit" class="btn btn-primary">Start Drill</button>
-                <button id="btnEnd" type="button" class="btn btn-outline">End Drill</button>
-              </div>
-            </form>
-          </div>
-
-          <!-- Add below Saved Reports card -->
-<div class="card" style="margin-top:12px">
-  <h3>Resources</h3>
-  <p class="small">Download posters and videos to use during drills or awareness sessions.</p>
-  <ul>
-    <li><a href="resources/posters/Earthquake.jpg" download>📄 Earthquake Safety Poster</a></li>
-    <li><a href="resources/posters/fire.jpg" download>📄 Fire Safety Poster</a></li>
-    <li><a href="resources/posters/flood.jpg" download>📄 Flood Safety Poster</a></li>
-  </ul>
-  <div>
-    <video controls width="250">
-      <source src="resources/videos/Earthquake.mp4" type="video/mp4">
-    </video>
-    <video controls width="250">
-      <source src="resources/videos/fire.mp4" type="video/mp4">
-    </video>
-    <video controls width="250">
-      <source src="resources/videos/flood.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-          <!-- Saved Reports -->
-          <div class="card" style="margin-top:12px">
-            <h3>Saved Reports</h3>
-            <div id="savedReports" class="small">No reports yet.</div>
-          </div>
-        </div>
-
-        <!-- Right Column -->
-        <div>
-          <div class="card">
-            <h3>Live Report</h3>
-            <div id="reportList" style="min-height:120px">No drill running.</div>
-          </div>
+          <video controls width="250"><source src="resources/videos/Earthquake.mp4"></video>
+          <video controls width="250"><source src="resources/videos/fire.mp4"></video>
+          <video controls width="250"><source src="resources/videos/flood.mp4"></video>
         </div>
       </div>
     </main>
   </div>
 
   <script src="quizzes.js"></script>
-  <script src="app.js" defer></script>
+  <script src="app.js"></script>
+  <script>initTeacher();</script>
 </body>
 </html>
