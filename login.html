@@ -9,12 +9,12 @@
 <body data-page="login">
   <div class="container center">
     <h2>Login</h2>
-    <form id="loginForm" class="card" style="max-width:400px">
+    <form id="loginForm" class="card" style="max-width:420px;width:100%">
       <label>Role</label>
       <select name="role" required>
         <option value="student">Student</option>
         <option value="teacher">Teacher</option>
-          <option value="admin">Admin</option>
+        <option value="admin">Admin</option>
       </select>
       <label>Name</label>
       <input type="text" name="name" required>
@@ -22,10 +22,13 @@
       <input type="text" name="cls" placeholder="ClassA">
       <label>Roll No (Students only)</label>
       <input type="text" name="roll">
-      <button class="btn btn-primary" type="submit">Login</button>
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn btn-primary" type="submit">Login</button>
+        <a href="index.html" class="btn btn-outline" style="text-decoration:none;padding:8px 12px">Cancel</a>
+      </div>
     </form>
   </div>
-  <script src="app.js"></script>
-  <script>initLogin();</script>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
