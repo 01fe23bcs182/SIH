@@ -141,3 +141,20 @@ body{
   .hero{flex-direction:column; padding:28px}
   .nav-links{display:none}
 }
+
+
+.download-btn {
+  display: inline-block;
+  margin: 6px 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.download-btn:hover {
+  background: #1e40af;
+}
+
