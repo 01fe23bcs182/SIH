@@ -1,72 +1,84 @@
-<section>
-  <h3>Lessons & Quizzes</h3>
-  <div class="modules">
-    <div class="module">
-      <h4>Earthquake Safety</h4>
-      <p class="small">Learn what to do during earthquakes.</p>
-      <a href="lessons/earthquake.html" target="_blank" class="btn btn-outline">Read Lesson</a>
-      <button class="btn btn-primary" onclick="startQuiz('earthquake')">Take Quiz</button>
-    </div>
-    <div class="module">
-      <h4>Fire Safety</h4>
-      <p class="small">Important fire evacuation rules.</p>
-      <a href="lessons/fire.html" target="_blank" class="btn btn-outline">Read Lesson</a>
-      <button class="btn btn-primary" onclick="startQuiz('fire')">Take Quiz</button>
-    </div>
-    <div class="module">
-      <h4>Flood Safety</h4>
-      <p class="small">How to stay safe during floods.</p>
-      <a href="lessons/flood.html" target="_blank" class="btn btn-outline">Read Lesson</a>
-      <button class="btn btn-primary" onclick="startQuiz('flood')">Take Quiz</button>
-    </div>
-    <div class="module">
-      <h4>First Aid</h4>
-      <p class="small">Basics of handling injuries.</p>
-      <a href="lessons/firstaid.html" target="_blank" class="btn btn-outline">Read Lesson</a>
-      <button class="btn btn-primary" onclick="startQuiz('firstaid')">Take Quiz</button>
-    </div>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="student">
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="index.html"><span class="logo">SIH</span> Student</a>
+      <div id="navUser"></div>
+    </header>
+
+    <main>
+      <h2 id="greetStudent"></h2>
+
+      <!-- Alerts -->
+      <section>
+        <h3>Alerts & Drills</h3>
+        <div id="alertBox" class="card">No active drills right now.</div>
+      </section>
+
+      <!-- Lessons & Quizzes -->
+      <section>
+        <h3>Lessons & Quizzes</h3>
+        <div class="modules">
+          <div class="module">
+            <h4>Earthquake Safety</h4>
+            <a href="lessons/earthquake.html" target="_blank" class="download-btn">Read Lesson</a>
+            <button class="btn btn-primary" onclick="startQuiz('earthquake')">Take Quiz</button>
+          </div>
+          <div class="module">
+            <h4>Fire Safety</h4>
+            <a href="lessons/fire.html" target="_blank" class="download-btn">Read Lesson</a>
+            <button class="btn btn-primary" onclick="startQuiz('fire')">Take Quiz</button>
+          </div>
+          <div class="module">
+            <h4>Flood Safety</h4>
+            <a href="lessons/flood.html" target="_blank" class="download-btn">Read Lesson</a>
+            <button class="btn btn-primary" onclick="startQuiz('flood')">Take Quiz</button>
+          </div>
+          <div class="module">
+            <h4>First Aid</h4>
+            <a href="lessons/firstaid.html" target="_blank" class="download-btn">Read Lesson</a>
+            <button class="btn btn-primary" onclick="startQuiz('firstaid')">Take Quiz</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources -->
+      <section>
+        <h3>Resources</h3>
+        <a class="download-btn" href="resources/posters/Earthquake.jpg" download>⬇️ Earthquake Poster</a>
+        <a class="download-btn" href="resources/posters/fire.jpg" download>⬇️ Fire Poster</a>
+        <a class="download-btn" href="resources/posters/flood.jpg" download>⬇️ Flood Poster</a>
+        <div>
+          <video controls width="250"><source src="resources/videos/Earthquake.mp4"></video>
+          <video controls width="250"><source src="resources/videos/fire.mp4"></video>
+          <video controls width="250"><source src="resources/videos/flood.mp4"></video>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <section>
-  <h3>Resources</h3>
-  <div class="grid">
-    <div class="card">
-      <h4>Posters</h4>
-      <ul>
-        <li><a href="resources/posters/Earthquake.jpg" download>📄 Earthquake Safety Poster</a></li>
-        <li><a href="resources/posters/fire.jpg" download>📄 Fire Safety Poster</a></li>
-        <li><a href="resources/posters/flood.jpg" download>📄 Flood Safety Poster</a></li>
-      </ul>
-    </div>
-    <div class="card">
-      <h4>Safety Videos</h4>
-      <video controls width="250">
-        <source src="resources/videos/Earthquake.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-      <video controls width="250">
-        <source src="resources/videos/fire.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-      <video controls width="250">
-        <source src="resources/videos/flood.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
+  <script src="quizzes.js"></script>
+  <script src="app.js"></script>
+  <script>initStudent();</script>
+
+  <!-- Quiz Modal -->
+  <div class="modal-overlay" id="quizModal">
+    <div class="modal">
+      <h3 id="quizTitle"></h3>
+      <div id="quizQuestion"></div>
+      <div id="quizOptions"></div>
+      <div class="actions">
+        <button class="btn btn-outline" onclick="closeQuiz()">Close</button>
+        <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
+      </div>
     </div>
   </div>
-</section>
-
-</section>
-
-<!-- Quiz Modal -->
-<div class="modal-overlay" id="quizModal">
-  <div class="modal">
-    <h3 id="quizTitle"></h3>
-    <div id="quizQuestion"></div>
-    <div id="quizOptions"></div>
-    <div class="actions">
-      <button class="btn btn-outline" onclick="closeQuiz()">Close</button>
-      <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
-    </div>
-  </div>
-</div>
+</body>
+</html>
