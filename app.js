@@ -74,9 +74,6 @@ function initStudent(){
   const greet = by("greetStudent");
   if(greet) greet.innerHTML = `<strong>${user.name}</strong> — ${user.cls}`;
 
-  const btn = by("btnSafe");
-  const curDrill = getCurrentDrill();
-
   function refreshAlert(){
     const cur = getCurrentDrill();
     const alertBox = by("alertBox");
@@ -99,11 +96,13 @@ function initStudent(){
   }
 
   refreshAlert();
+  refreshLeaderboard();
 
   window.addEventListener("storage", function(e){
     if(e.key === "currentDrill" || (e.key && e.key.startsWith("drillResponse:"))){
       refreshAlert();
     }
+    if(e.key === "studentScores"){ refreshLeaderboard(); }
   });
 }
 
@@ -166,13 +165,11 @@ function initTeacher(){
     statCount.innerText = res.length;
   }
 
-  // Listen for student responses
   window.addEventListener('storage', function(e){
     if(e.key && e.key.indexOf('drillResponse:') === 0) refreshReport();
     if(e.key === 'currentDrill') refreshReport();
   });
 
-  // Start Drill
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
     const fm = new FormData(form);
@@ -192,7 +189,6 @@ function initTeacher(){
     refreshReport();
   });
 
-  // End Drill
   const btnEnd = by('btnEnd');
   if(btnEnd) btnEnd.addEventListener('click', ()=>{
     const cur = getCurrentDrill();
@@ -202,7 +198,6 @@ function initTeacher(){
     clearCurrentDrill();
     showToast('Drill ended & report saved');
     refreshReport();
-    // show saved reports
     const reports = JSON.parse(localStorage.getItem('drillReports') || '[]');
     savedReports.innerHTML = reports.map(r =>
       `<div>${r.drill.type} (${r.drill.cls}) — ${formatTime(r.drill.startedAt)} — Responses: ${r.responses.length}</div>`
@@ -213,7 +208,7 @@ function initTeacher(){
 }
 
 /******************************
- * QUIZ SYSTEM (Student)
+ * QUIZ SYSTEM + GAMIFICATION
  ******************************/
 let currentQuiz = [];
 let currentIndex = 0;
@@ -250,10 +245,38 @@ function nextQuestion() {
   } else {
     alert("Quiz Finished! Score: " + currentScore + "/" + currentQuiz.length);
     localStorage.setItem("lastQuizScore", currentScore);
+
+    // === Gamification: Add Points ===
+    const user = getUser();
+    if(user && user.role === "student"){
+      let scores = JSON.parse(localStorage.getItem("studentScores") || "{}");
+      if(!scores[user.name]) scores[user.name] = 0;
+      scores[user.name] += currentScore;
+      localStorage.setItem("studentScores", JSON.stringify(scores));
+    }
+
+    if(document.getElementById("leaderboard")) refreshLeaderboard();
     closeQuiz();
   }
 }
 
 function closeQuiz() {
   by("quizModal").style.display = "none";
+}
+
+function refreshLeaderboard(){
+  const board = document.getElementById("leaderboard");
+  if(!board) return;
+  const scores = JSON.parse(localStorage.getItem("studentScores") || "{}");
+  let entries = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  if(entries.length === 0){
+    board.innerHTML = "No scores yet.";
+    return;
+  }
+  let html = "<table class='table'><thead><tr><th>Student</th><th>Points</th></tr></thead><tbody>";
+  entries.forEach(([name, pts])=>{
+    html += `<tr><td>${name}</td><td>${pts}</td></tr>`;
+  });
+  html += "</tbody></table>";
+  board.innerHTML = html;
 }
