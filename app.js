@@ -60,6 +60,7 @@ function initLogin(){
 
     if(role === "student") location.href = "student.html";
     else if(role === "teacher") location.href = "teacher.html";
+      else if(role === "admin") location.href = "admin.html";
     else location.href = "index.html";
   });
 }
